@@ -36,7 +36,6 @@ import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { AppRoutingModule } from '../app-routing.module';
 import { AppComponent } from '../app.component';
-import { EmployeeRoutingModule } from '../employee/employee/employee-routing.module';
 
 export const appImport = [
   BrowserModule,
@@ -48,7 +47,6 @@ export const commonImports = [
   CommonModule,
   FormsModule,
   ReactiveFormsModule,
-  EmployeeRoutingModule,
   CdkTreeModule,
   MatAutocompleteModule,
   MatButtonModule,
