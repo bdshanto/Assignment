@@ -18,8 +18,11 @@ namespace EmployeeApp
 
         
         public void ConfigureServices(IServiceCollection services)
-        { 
-           // services.AddDbContext<ApplicationDbContext>(options => options.UseSqlServer(Configuration.GetConnectionString("ConnectionStrings")));
+        {
+            services
+                .AddDbContext<ApplicationDbContext>(options => options
+                    .UseSqlServer(Configuration
+                        .GetConnectionString("AppConnectionString")));
             services.AddControllers().SetCompatibilityVersion(CompatibilityVersion.Latest);
              
 

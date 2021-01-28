@@ -5,17 +5,19 @@ namespace EmployeeApp.Context
 {
     public class ApplicationDbContext: DbContext
     {
-        public ApplicationDbContext(): base()
+        public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options): base(options)
         {
             
         }
         public DbSet<Employee> Employees { get; set; }
 
-
-        protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
+        protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
-            optionsBuilder.UseSqlServer("Server= SHAN; Database=EmployeeInfo; Integrated Security= True");
-            base.OnConfiguring(optionsBuilder);
-        } 
+            modelBuilder.Entity<Employee>().Property(c => c.Name).HasMaxLength(100);
+            modelBuilder.Entity<Employee>().Property(c => c.Address).HasMaxLength(500);
+            modelBuilder.Entity<Employee>().Property(c => c.Email).HasMaxLength(100);
+            modelBuilder.Entity<Employee>().Property(c => c.Phone).HasMaxLength(100);
+            base.OnModelCreating(modelBuilder);
+        }
     }
 }
