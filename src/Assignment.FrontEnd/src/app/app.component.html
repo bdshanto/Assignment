@@ -1,3 +1,9 @@
-<button routerLink="employee">Employee</button>
-<button routerLink="employee/employees">Employee</button>
-<router-outlet  ></router-outlet>
+<mat-toolbar class="app-header" color="primary">
+  <div><a class="positronx" href="#" target="_blank">Employee</a></div>
+  <span class="nav-tool-items">
+    <a mat-button routerLink="employee" routerLinkActive="active">Add</a>
+    <a mat-button mat-raised-button routerLink="employee/employees" routerLinkActive="active">List</a>
+  </span>
+</mat-toolbar>
+
+<router-outlet></router-outlet>

@@ -1,9 +1,6 @@
-import { CommonModule } from '@angular/common';
-import { EmployeeRoutingModule } from '../employee-routing.module';
+import { commonImports } from '../../../app-config/appModuleConfig';
 import { EmployeeService } from '../employee.service';
 
-export const employeeExport = [
-  CommonModule,
-  EmployeeRoutingModule
-];
+export const employeeExports = [commonImports];
+
 export const empProviders = [EmployeeService];
