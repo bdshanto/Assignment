@@ -13,7 +13,7 @@ import { Employee } from '../../models/employee';
 export class EmployeeListComponent implements OnInit {
   employees: Employee[] = [];
 
-  displayedColumns: string[] = ['id', 'name', 'email', 'address', 'createOn', 'action'];
+  displayedColumns: string[] = ['id', 'name', 'email', 'address',  'action'];
   dataSource: MatTableDataSource<Employee>;
   @ViewChild(MatPaginator) paginator: MatPaginator;
 
