@@ -3,13 +3,15 @@
     <span class="fill-remaining-space">Create employee</span>
   </mat-toolbar>
 
-  <form [formGroup]="employeeForm" autocomplete="off" autocapitalize="off" (ngSubmit)="onSubmit(employeeForm)" class="card">
+  <form [formGroup]="employeeForm" autocomplete="off" autocapitalize="off" (ngSubmit)="onSubmit(employeeForm)"
+        class="card">
     <div class="form-group row">
       <mat-form-field class="form-element col-md-4">
         <input matInput placeholder="Name" formControlName="name">
       </mat-form-field>
 
       <mat-form-field class="form-element col-md-4">
+        <mat-label>Email</mat-label>
         <input matInput placeholder="Email" formControlName="email">
       </mat-form-field>
       <mat-form-field class="form-element col-md-4">

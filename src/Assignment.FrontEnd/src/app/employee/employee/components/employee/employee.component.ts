@@ -19,8 +19,14 @@ export class EmployeeComponent implements OnInit {
   ) { this.model = new Employee(); }
 
   ngOnInit(): void {
+    this._service.currentData.subscribe(c => {
+        if (c != null || c !== undefined) {
+          this.model = c;
+          this.createForm();
+        }
+      }
+    );
 
-    this.createForm();
   }
 
   createForm(data: Employee = null): void {

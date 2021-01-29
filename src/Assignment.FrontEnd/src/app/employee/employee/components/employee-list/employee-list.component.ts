@@ -31,6 +31,9 @@ export class EmployeeListComponent implements OnInit, AfterViewInit {
   }
 
   Edit(id: number): void {
-
+    const data = this.employees.find(c => c.id === id);
+    if (data != null) {
+      this._service.setData(data);
+    }
   }
 }
