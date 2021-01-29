@@ -46,8 +46,13 @@ export class EmployeeComponent implements OnInit {
 
     this.model = form.value;
     this.model.createOn = new Date();
-    this._service.add(this.model).subscribe(c => {
-      console.log('Save successfully');
+    this._service.add(this.model).subscribe((c: boolean) => {
+      if (c) {
+        this.createForm(null);
+        this.employeeForm.reset();
+      }
+      this.label = c ? 'Save successfully' : 'Not Saved';
+
     });
   }
 }

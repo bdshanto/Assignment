@@ -43,7 +43,7 @@ namespace EmployeeApp.Controllers
             var isAdded = await _dbContext.SaveChangesAsync() > 0;
             if (isAdded)
             {
-                return Ok(model);
+                return Ok(isAdded);
             }
 
             return BadRequest();
