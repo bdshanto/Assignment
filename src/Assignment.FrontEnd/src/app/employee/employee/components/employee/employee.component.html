@@ -27,8 +27,15 @@
 
     <div class="mat-form-field-wrapper mat-action-row">
 
-      <div class="mat-button"><button mat-raised-button color="primary" type="submit" class="button" [disabled]="!employeeForm.valid">Save
-      </button>
+      <div class="mat-button">
+        <button    type="submit" class="btn btn-outline-primary" *ngIf="model.id==0"
+                [disabled]="!employeeForm.valid">Save
+        </button>
+        <button  color="primary"
+                type="submit" class="button"
+                *ngIf="model.id>0"
+                [disabled]="!employeeForm.valid" >Save
+        </button>
       </div>
 
 

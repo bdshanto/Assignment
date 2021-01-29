@@ -13,12 +13,12 @@ import { Employee } from '../../models/employee';
 export class EmployeeListComponent implements OnInit {
   employees: Employee[] = [];
 
-  displayedColumns: string[] = ['id', 'name', 'email', 'address',  'action'];
+  displayedColumns: string[] = ['id', 'name', 'email', 'address', 'action'];
   dataSource: MatTableDataSource<Employee>;
   @ViewChild(MatPaginator) paginator: MatPaginator;
 
   constructor(
-    private _service: EmployeeService
+    private _service: EmployeeService,
   ) { }
 
   ngOnInit(): void {
@@ -32,9 +32,17 @@ export class EmployeeListComponent implements OnInit {
   }
 
   Edit(id: number): void {
-    const data = this.employees.find(c => c.id === id);
-    if (data != null) {
-      this._service.setData(data);
-    }
+    this._service.getById(id).subscribe(c => {
+      if (c != null) {
+        this._service.setData(c);
+      }
+    });
+
+  }
+
+  Delete(id): void {
+    this._service.remove(id).subscribe(c => {
+      this._service.getAll().subscribe();
+    });
   }
 }

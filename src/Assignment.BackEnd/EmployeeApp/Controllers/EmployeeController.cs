@@ -28,6 +28,12 @@ namespace EmployeeApp.Controllers
             var dataList = await _dbContext.Employees.ToListAsync();
             return Ok(dataList);
         }
+        [HttpGet("{id}")]
+        public async Task<IActionResult> GetById(long id)
+        {
+            var dataList = await _dbContext.Employees.FindAsync(id);
+            return Ok(dataList);
+        }
 
         [HttpPost]
         [Consumes(MediaTypeNames.Application.Json)]

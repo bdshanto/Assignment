@@ -1,40 +1,45 @@
-
 <div class="mat-elevation-z8">
   <table mat-table [dataSource]="dataSource">
 
     <ng-container matColumnDef="id">
-      <th mat-header-cell *matHeaderCellDef> Id </th>
+      <th mat-header-cell *matHeaderCellDef> Id</th>
       <td mat-cell *matCellDef="let element"> {{element.id}} </td>
     </ng-container>
 
 
     <ng-container matColumnDef="name">
-      <th mat-header-cell *matHeaderCellDef> Name </th>
+      <th mat-header-cell *matHeaderCellDef> Name</th>
       <td mat-cell *matCellDef="let element"> {{element.name}} </td>
     </ng-container>
 
-        <ng-container matColumnDef="email">
-      <th mat-header-cell *matHeaderCellDef> Email </th>
+    <ng-container matColumnDef="email">
+      <th mat-header-cell *matHeaderCellDef> Email</th>
       <td mat-cell *matCellDef="let element"> {{element.email}} </td>
     </ng-container>
 
 
     <ng-container matColumnDef="phone">
-      <th mat-header-cell *matHeaderCellDef> Phone </th>
+      <th mat-header-cell *matHeaderCellDef> Phone</th>
       <td mat-cell *matCellDef="let element"> {{element.phone}} </td>
     </ng-container>
     <!-- Symbol Column -->
     <ng-container matColumnDef="address">
-      <th mat-header-cell *matHeaderCellDef> Address </th>symbol
+      <th mat-header-cell *matHeaderCellDef> Address</th>
+      symbol
       <td mat-cell *matCellDef="let element"> {{element.address}} </td>
     </ng-container>  <!-- Symbol Column -->
     <ng-container matColumnDef="createOn">
-      <th mat-header-cell *matHeaderCellDef> Created at </th>symbol
+      <th mat-header-cell *matHeaderCellDef> Created at</th>
+      symbol
       <td mat-cell *matCellDef="let element"> {{element.createOn }} </td>
     </ng-container>
     <ng-container matColumnDef="action">
-      <th mat-header-cell *matHeaderCellDef> Action </th>symbol
-      <td mat-cell *matCellDef="let element"> <button (click)="Edit(element.id)"></button></td>
+      <th mat-header-cell *matHeaderCellDef> Action</th>
+      symbol
+      <td mat-cell *matCellDef="let element">
+        <button class="btn btn-primary p-1" (click)="Edit(element.id)" routerLink="/employee">Edit</button>
+        <button class="btn btn-primary p-1" (click)="Delete(element.id)">Delete</button>
+      </td>
     </ng-container>
 
     <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>

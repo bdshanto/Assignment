@@ -1,7 +1,6 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { BehaviorSubject, Observable, throwError } from 'rxjs';
-import { catchError } from 'rxjs/operators';
+import { BehaviorSubject, throwError } from 'rxjs';
 import { Employee } from './models/employee';
 
 @Injectable({
@@ -10,11 +9,7 @@ import { Employee } from './models/employee';
 export class EmployeeService {
   public currentData: BehaviorSubject<Employee>;
   public dataSource: BehaviorSubject<Employee>;
-  httpOptions = {
-    headers: new HttpHeaders({
-      'Content-Type': 'application/json'
-    })
-  };
+  httpOptions = { headers: new HttpHeaders({ 'Content-Type': 'application/json' }) };
   private readonly apiUrl: string = 'https://localhost:44322/api/employee';
 
   constructor(
@@ -36,8 +31,16 @@ export class EmployeeService {
     return this._http.put(this.apiUrl + '/' + employee.id, employee, this.httpOptions);
   }
 
+  remove(id: number): any {
+    return this._http.delete(this.apiUrl + '/' + id, this.httpOptions);
+  }
+
   getAll(): any {
     return this._http.get(this.apiUrl, this.httpOptions);
+  }
+
+  getById(id: number): any {
+    return this._http.get(`${this.apiUrl}/${id}`, this.httpOptions);
   }
 
   errorHandler(error): any {
