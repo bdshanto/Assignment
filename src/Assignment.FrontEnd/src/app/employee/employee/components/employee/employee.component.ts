@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup, FormControl, Validators } from '@angular/forms';
-import { validate } from 'codelyzer/walkerFactory/walkerFn';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { EmployeeService } from '../../employee.service';
 import { Employee } from '../../models/employee';
 
@@ -19,10 +18,11 @@ export class EmployeeComponent implements OnInit {
   ) { this.model = new Employee(); }
 
   ngOnInit(): void {
+    this.createForm();
     this._service.currentData.subscribe(c => {
         if (c != null || c !== undefined) {
           this.model = c;
-          this.createForm();
+
         }
       }
     );

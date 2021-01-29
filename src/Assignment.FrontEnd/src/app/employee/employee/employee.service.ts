@@ -8,7 +8,7 @@ import { Employee } from './models/employee';
   providedIn: 'root'
 })
 export class EmployeeService {
-  private readonly apiUrl: string = 'http://localhost:44389/api/employee/';
+  private readonly apiUrl: string = 'https://localhost:44322/api/employee/';
 
   public currentData: BehaviorSubject<Employee>;
   public dataSource: BehaviorSubject<Employee>;
