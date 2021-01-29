@@ -1,17 +1,21 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { BehaviorSubject } from 'rxjs';
-import { empDeclarations } from '../config/employee_module_config';
+import { BehaviorSubject, Observable, throwError } from 'rxjs';
+import { catchError } from 'rxjs/operators';
 import { Employee } from './models/employee';
 
 @Injectable({
   providedIn: 'root'
 })
 export class EmployeeService {
-  private readonly apiUrl: string = 'https://localhost:44322/api/employee/';
-
   public currentData: BehaviorSubject<Employee>;
   public dataSource: BehaviorSubject<Employee>;
+  httpOptions = {
+    headers: new HttpHeaders({
+      'Content-Type': 'application/json'
+    })
+  };
+  private readonly apiUrl: string = 'https://localhost:44322/api/employee';
 
   constructor(
     private _http: HttpClient
@@ -25,15 +29,28 @@ export class EmployeeService {
   }
 
   add(employee: Employee): any {
-    return this._http.post(this.apiUrl, employee);
+    return this._http.post<Employee>(this.apiUrl, employee, this.httpOptions);
   }
 
   update(employee: Employee): any {
-    return this._http.put(this.apiUrl + '/' + employee.id, employee);
+    return this._http.put(this.apiUrl + '/' + employee.id, employee, this.httpOptions);
   }
 
   getAll(): any {
-    return this._http.get(this.apiUrl);
+    return this._http.get(this.apiUrl, this.httpOptions);
   }
 
+  errorHandler(error): any {
+    let errorMessage = '';
+    if (error.error instanceof ErrorEvent) {
+      // Get client-side error
+      errorMessage = error.error.message;
+    }
+    else {
+      // Get server-side error
+      errorMessage = `Error Code: ${error.status}\nMessage: ${error.message}`;
+    }
+    console.log(errorMessage);
+    return throwError(errorMessage);
+  }
 }

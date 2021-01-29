@@ -1,12 +1,17 @@
-﻿using System.Threading.Tasks;
+﻿using System.Net.Mime;
+using System.Threading.Tasks;
 using EmployeeApp.Context;
 using EmployeeApp.Models;
+using Microsoft.AspNetCore.Cors;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.Formatters;
 using Microsoft.EntityFrameworkCore;
 
 namespace EmployeeApp.Controllers
 {
     [Route("api/[controller]")]
+   // [EnableCors("cors")]
     public class EmployeeController : ControllerBase
     {
         private readonly ApplicationDbContext _dbContext;
@@ -17,6 +22,7 @@ namespace EmployeeApp.Controllers
         }
 
         [HttpGet]
+       
         public async Task<IActionResult> Get()
         {
             var dataList = await _dbContext.Employees.ToListAsync();
@@ -24,9 +30,16 @@ namespace EmployeeApp.Controllers
         }
 
         [HttpPost]
-        public async Task<IActionResult> Post(Employee data)
+        [Consumes(MediaTypeNames.Application.Json)]
+        [ProducesResponseType(StatusCodes.Status201Created, Type = typeof(Employee))]
+        [ProducesResponseType(StatusCodes.Status400BadRequest)]
+        public async Task<IActionResult> Post([FromBody]Employee employee)
         {
-            var model = await _dbContext.Employees.AddAsync(data);
+            if (!ModelState.IsValid) return BadRequest(ModelState.Root.ValidationState);
+            {
+                
+            }
+            var model = await _dbContext.Employees.AddAsync(employee);
             var isAdded = await _dbContext.SaveChangesAsync() > 0;
             if (isAdded)
             {

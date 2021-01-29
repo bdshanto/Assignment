@@ -12,24 +12,25 @@ namespace EmployeeApp
     public class Startup
     {
         public Startup(IConfiguration configuration)
-        {  Configuration = configuration;  }
+        { Configuration = configuration; }
 
         public IConfiguration Configuration { get; }
 
-        
+
         public void ConfigureServices(IServiceCollection services)
         {
             services
                 .AddDbContext<ApplicationDbContext>(options => options
                     .UseSqlServer(Configuration
                         .GetConnectionString("AppConnectionString")));
+            services.AddCors(c => c.AddPolicy("cors", opt => opt.AllowAnyHeader().AllowAnyMethod().AllowAnyOrigin()));
             services.AddControllers().SetCompatibilityVersion(CompatibilityVersion.Latest);
-             
+
 
             services.AddTransient<DbContext, ApplicationDbContext>();
             services.AddTransient<ApplicationDbContext>();
-        } 
-        
+        }
+
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
         {
             if (env.IsDevelopment())
@@ -40,7 +41,7 @@ namespace EmployeeApp
             app.UseHttpsRedirection();
 
             app.UseRouting();
-
+            app.UseCors("cors");
             app.UseAuthorization();
 
             app.UseEndpoints(endpoints =>

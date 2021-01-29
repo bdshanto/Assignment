@@ -44,6 +44,7 @@ export class EmployeeComponent implements OnInit {
   onSubmit(form: FormGroup): void {
 
     this.model = form.value;
+    this.model.createOn = new Date();
     this._service.add(this.model).subscribe(c => {
       console.log('Save successfully');
     });
