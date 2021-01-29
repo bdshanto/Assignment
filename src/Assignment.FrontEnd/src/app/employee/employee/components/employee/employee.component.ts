@@ -11,6 +11,7 @@ import { Employee } from '../../models/employee';
 export class EmployeeComponent implements OnInit {
   employeeForm: FormGroup = null;
   model: Employee = null;
+  label: string = '';
 
   constructor(
     private _formBuilder: FormBuilder,
