@@ -21,7 +21,7 @@ namespace EmployeeApp
         {
             services
                 .AddDbContext<ApplicationDbContext>(options => options
-                    .UseSqlServer(Configuration
+                    .UseNpgsql(Configuration
                         .GetConnectionString("AppConnectionString")));
             services.AddCors(c => c.AddPolicy("cors", opt => opt.AllowAnyHeader().AllowAnyMethod().AllowAnyOrigin()));
             services.AddControllers().SetCompatibilityVersion(CompatibilityVersion.Latest);
