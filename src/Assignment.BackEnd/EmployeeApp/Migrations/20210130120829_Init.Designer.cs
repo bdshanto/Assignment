@@ -3,48 +3,48 @@ using System;
 using EmployeeApp.Context;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
-using Microsoft.EntityFrameworkCore.Metadata;
 using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
+using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 
 namespace EmployeeApp.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20210128070042_EmployeeModelUpdated")]
-    partial class EmployeeModelUpdated
+    [Migration("20210130120829_Init")]
+    partial class Init
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
+                .HasAnnotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn)
                 .HasAnnotation("ProductVersion", "3.1.10")
-                .HasAnnotation("Relational:MaxIdentifierLength", 128)
-                .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+                .HasAnnotation("Relational:MaxIdentifierLength", 63);
 
             modelBuilder.Entity("EmployeeApp.Models.Employee", b =>
                 {
                     b.Property<long>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("bigint")
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+                        .HasAnnotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn);
 
                     b.Property<string>("Address")
-                        .HasColumnType("nvarchar(500)")
+                        .HasColumnType("character varying(500)")
                         .HasMaxLength(500);
 
                     b.Property<DateTime>("CreateOn")
-                        .HasColumnType("datetime2");
+                        .HasColumnType("timestamp without time zone");
 
                     b.Property<string>("Email")
-                        .HasColumnType("nvarchar(100)")
+                        .HasColumnType("character varying(100)")
                         .HasMaxLength(100);
 
                     b.Property<string>("Name")
-                        .HasColumnType("nvarchar(100)")
+                        .HasColumnType("character varying(100)")
                         .HasMaxLength(100);
 
                     b.Property<string>("Phone")
-                        .HasColumnType("nvarchar(100)")
+                        .HasColumnType("character varying(100)")
                         .HasMaxLength(100);
 
                     b.HasKey("Id");

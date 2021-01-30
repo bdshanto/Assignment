@@ -33,6 +33,10 @@ namespace EmployeeApp
 
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
         {
+            if (env.IsProduction())
+            {
+                
+            }
             if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();
