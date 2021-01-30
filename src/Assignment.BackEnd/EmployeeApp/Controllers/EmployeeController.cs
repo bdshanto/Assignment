@@ -10,6 +10,7 @@ using Microsoft.EntityFrameworkCore;
 
 namespace EmployeeApp.Controllers
 {
+    [ApiController]
     [Route("api/[controller]")]
    // [EnableCors("cors")]
     public class EmployeeController : ControllerBase
