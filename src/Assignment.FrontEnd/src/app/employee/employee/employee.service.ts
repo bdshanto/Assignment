@@ -10,7 +10,7 @@ export class EmployeeService {
   public currentData: BehaviorSubject<Employee>;
   public dataSource: BehaviorSubject<Employee>;
   httpOptions = { headers: new HttpHeaders({ 'Content-Type': 'application/json' }) };
-  private readonly apiUrl: string = 'https://localhost:44322/api/employee';
+  private readonly apiUrl: string = 'https://dotnet-assignment.herokuapp.com/api/employee';
 
   constructor(
     private _http: HttpClient
